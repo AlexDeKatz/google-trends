@@ -42,6 +42,7 @@ func getGoogleTrends() *http.Response {
 
 func readGoogleTrends() []byte {
 	resp := getGoogleTrends()
+	defer resp.Body.Close()
 	data, err := io.ReadAll(resp.Body)
 
 	if err != nil {
